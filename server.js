@@ -2,8 +2,10 @@
 
 var env = require("./env.js");
 var request = require("request");
-var express = require('express'),
-var app = express();
+var express = require('express');
+var flash = require('flash');
+app = express();
+var morgan = require ('morgan');
 app.use(morgan('dev')); 
 app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
@@ -12,15 +14,18 @@ app.set('view engine', 'ejs');
  * PARSING *
  ************/
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+// - deactivated du to unreselved error
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cookieParser());
+// app.use(cookieParser());
 app.use(bodyParser()); 
 
 /************
  * PASSPORT *
  ************/
-app.use(session({ secret: 'WDI-GENERAL-ASSEMBLY-EXPRESS' })); 
+
+var passport = require('passport');
 app.use(passport.initialize());
 app.use(passport.session()); 
 app.use(flash()); 

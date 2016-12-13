@@ -1,7 +1,6 @@
 {
   "name": "Gisella's project2",
   "description": "BikeFinder App integrated with Google API"
-  "main" "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

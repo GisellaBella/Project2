@@ -14,6 +14,9 @@ router.route('/')
 router.route('/signup')
   .get(usersController.getSignup)
   .post(usersController.postSignup)
+  .post(inforequestController.postRequest)
+
+
 
 router.route('/login')
   .get(usersController.getLogin)

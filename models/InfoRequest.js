@@ -1,16 +1,19 @@
-// user.js
+// infoRequest.js
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var bcrypt   = require('bcrypt-nodejs');
 
-var UserSchema = new Schema ({
+var InfoRequestSchema = new Schema ({
+  user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+         },
   name: String,
-  email: String,
-
-
+  dates: String,
+  bikes: String,
+  tel: String,
 });
 
-var User = mongoose.model('User', UserSchema);
+var InfoRequest = mongoose.model('InfoRequest', InforRequestSchema);
 
 User.methods.encrypt = function(password) {
 	return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
