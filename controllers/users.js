@@ -1,4 +1,5 @@
 var passport = require("passport");
+// var apiGoogle = require('./env');
 
 // GET /signup
 function getSignup(request, response) {
@@ -45,7 +46,13 @@ function secret(request, response){
   response.json({secret: "Woooah secret!"});
 }
 
+function getLocation(request, response){
+  response.json("https://maps.googleapis.com/maps/api/place/textsearch/json?query=bikeshops+in+boulder&key=AIzaSyBBJ_3VrFAhw6K3qO-YbX4eMM-MAfLNQgc");
+
+}
+
 module.exports = {
+  getLocation: getLocation,
   getLogin: getLogin,
   postLogin: postLogin ,
   getSignup: getSignup,

@@ -18,6 +18,11 @@ app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 
 /************
+* CORS *
+ ************/
+
+
+/************
  * PARSING *
  ************/
 

@@ -1,5 +1,5 @@
 // API key for Google Places
 
-var apiKey = "AIzaSyAQpQYzOOln7oitDS1n256tmGpLihwWljs";
+var apiKey = "AIzaSyBBJ_3VrFAhw6K3qO-YbX4eMM-MAfLNQgc";
 
 module.exports= apiKey;

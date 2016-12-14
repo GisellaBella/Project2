@@ -25,9 +25,9 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       	<ul class="nav navbar-nav">
-      	<li class="active"><a class = "visible-phone" href="index.html">Gisella's Project 2: BikeFinder</a></li>
+      	<li class="active"><a class = "visible-phone" href="index.ejs">Gisella's Project 2: BikeFinder</a></li>
         <li><a href="https://trello.com/b/oAq48IA0/wdi-project-2-bikefinder">Trello User Stories & Sprints</a></li>
-        <li><a href="orginal_wireframes.html">Original Wireframes</a></li> 
+        <li><a href="orginal_wireframes.ejs">Original Wireframes</a></li> 
         <li><a href="readMe.md">ReadMe</a></li> 
       </ul>
  
@@ -50,16 +50,17 @@
 			
 			<!-- Location Query -->
 
-							<form id='location-form' method="post"> 
-							<fieldset>
+						<!-- 	<form id='location-form' method="post" action="/app.js"> 
+							<fieldset> -->
 								<div class="form-group">
-							    <input type="text" id="location" name="loc" class="form-control input-md" required="yo" placeholder="What City & State?">
+							    <input id="search" name="location" class="form-control input-md" placeholder="What City & State?">
 							  	</div>
-							    <div class="form-group">
-								 <button class="btn btn-primary">Submit</button>
-								</div>
-							</fieldset>
-							</form>
+							
+								 <button id="button" type = "button" class="btn btn-primary">Submit</button>
+								 <div id="results"></div>
+						
+						<!-- 	</fieldset>
+							</form> -->
 			<!-- End of Location Query -->
 			</div>
 		</row>
@@ -86,6 +87,8 @@
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> </script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
 	<script type="text/javascript" src="./js/daterangepicker.js"></script>
 	<script type="text/javascript" src="./js/app.js"></script>
 </body>
