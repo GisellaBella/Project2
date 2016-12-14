@@ -1,11 +1,18 @@
 // server.js
-
-var env = require("./env.js");
+var express      = require('express');
+var app          = express();
+var mongoose     = require('mongoose');
+var session      = require('express-session');
+var passport     = require('passport');
+var flash        = require('connect-flash');
+var morgan       = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser   = require('body-parser');
 var request = require("request");
-var express = require('express');
-var flash = require('flash');
+var env = require("./env.js");
+
+
 app = express();
-var morgan = require ('morgan');
 app.use(morgan('dev')); 
 app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
@@ -13,8 +20,7 @@ app.set('view engine', 'ejs');
 /************
  * PARSING *
  ************/
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
+
 // - deactivated du to unreselved error
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -25,7 +31,7 @@ app.use(bodyParser());
  * PASSPORT *
  ************/
 
-var passport = require('passport');
+
 app.use(passport.initialize());
 app.use(passport.session()); 
 app.use(flash()); 
@@ -38,7 +44,6 @@ app.use(function (req, res, next) {
 /************
  * DATABASE *
  ************/
-mongoose.connect('mongodb://localhost/local-authentication-with-passport'); 
 var db = require('./models');
 
 /**********
@@ -48,13 +53,13 @@ var db = require('./models');
 // i.e. `/images`, `/scripts`, `/styles`
 var routes = require('./config/routes');
 app.use(routes);
-app.use(express.static('public'));
-// app.use(express.static(__dirname + '/public')); not sure which way works
+// app.use(express.static('public'));
+app.use(express.static(__dirname + '/public')); 
 app.set('views', './views');
 /*
  * HTML Endpoints
  */
-app.set('views', './views');
+
 
 /**********
  * SERVER *
