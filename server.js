@@ -9,13 +9,13 @@ var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var request = require("request");
-var env = require("./env.js");
+// var env = require('env.js');
 
 
 app = express();
 app.use(morgan('dev')); 
-app.engine('ejs', require('ejs').renderFile);
-app.set('view engine', 'ejs');
+// app.engine('ejs', require('ejs').renderFile);
+// app.set('view engine', 'ejs');
 
 /************
 * CORS *
@@ -58,13 +58,15 @@ var db = require('./models');
 // i.e. `/images`, `/scripts`, `/styles`
 var routes = require('./config/routes');
 app.use(routes);
-// app.use(express.static('public'));
+app.use(express.static('public'));
 app.use(express.static(__dirname + '/public')); 
 app.set('views', './views');
 /*
  * HTML Endpoints
  */
-
+app.get('/', function homepage(request, response) {
+  response.sendFile(__dirname + '/views/index.html');
+});
 
 /**********
  * SERVER *

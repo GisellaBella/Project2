@@ -7,6 +7,7 @@ var methodOverride = require('method-override');
 var passport = require("passport");
 var usersController = require('../controllers/users');
 var staticsController = require('../controllers/statics');
+var env = require('../env');
 
 
 router.route('/')
@@ -26,7 +27,7 @@ router.route("/logout")
   .get(usersController.getLogout);
 
 
-  router.route("/location")
-  .get(usersController.getLocation);
+// router.route('/search')
+//  .post(usersController.search);
 
 module.exports = router;	

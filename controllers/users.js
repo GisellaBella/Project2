@@ -1,5 +1,5 @@
 var passport = require("passport");
-// var apiGoogle = require('./env');
+var apiKey = "AIzaSyBBJ_3VrFAhw6K3qO-YbX4eMM-MAfLNQgc";
 
 // GET /signup
 function getSignup(request, response) {
@@ -46,13 +46,17 @@ function secret(request, response){
   response.json({secret: "Woooah secret!"});
 }
 
-function getLocation(request, response){
-  response.json("https://maps.googleapis.com/maps/api/place/textsearch/json?query=bikeshops+in+boulder&key=AIzaSyBBJ_3VrFAhw6K3qO-YbX4eMM-MAfLNQgc");
+// function search(request, response){
+//  var search = request.body;
+//  var fullURL= response.json("https://maps.googleapis.com/maps/api/place/textsearch/json?query=bikeshops+in"+ search + apiKey);
+// }
 
-}
+
+
+// }
 
 module.exports = {
-  getLocation: getLocation,
+  // search: search,
   getLogin: getLogin,
   postLogin: postLogin ,
   getSignup: getSignup,

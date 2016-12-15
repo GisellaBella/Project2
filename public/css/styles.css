@@ -180,8 +180,11 @@ Fixed Top Nav Bar Styling------------------------------------------------- */
 
 /*Map Div Styling--------------------------------------------------------------*/
 
-#results-map {
-	height: 100%;
-	padding:0px;
-	margin: 0px;
+.map_canvas {
+height:500px; 
+margin-left:400px; 
+border-right: 1px solid #666666; 
+border-bottom: 1px solid #666666; 
+border-top: 1px solid #AAAAAA; 
+border-left: 1px solid #AAAAAA;
 }

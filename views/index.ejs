@@ -13,6 +13,7 @@
 </head>
 <body>
 
+
 <!-- Top Navigation Bar  -->
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -50,17 +51,18 @@
 			
 			<!-- Location Query -->
 
-						<!-- 	<form id='location-form' method="post" action="/app.js"> 
-							<fieldset> -->
+					<form id='location-form'>
+						
 								<div class="form-group">
-							    <input id="search" name="location" class="form-control input-md" placeholder="What City & State?">
+							    <input id="search" name="locsation" class="form-control input-md" placeholder="What City & State?">
 							  	</div>
 							
-								 <button id="button" type = "button" class="btn btn-primary">Submit</button>
+								 <a href = "/search_results" class="btn btn-primary">Submit </a>
+							
 								 <div id="results"></div>
 						
-						<!-- 	</fieldset>
-							</form> -->
+		
+							</form>
 			<!-- End of Location Query -->
 			</div>
 		</row>
@@ -87,9 +89,11 @@
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> </script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-
-	<script type="text/javascript" src="./js/daterangepicker.js"></script>
+<!-- 	My JS file -->
 	<script type="text/javascript" src="./js/app.js"></script>
+ <!-- Google Maps and Places API -->
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyB47TKXs1AAflxa1PA-WNj6UZ2Ylfd48DE"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    
 </body>
 </html>
