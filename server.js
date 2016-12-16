@@ -15,8 +15,8 @@ var request = require("request");
 app = express();
 app.use(morgan('dev')); 
 // app.engine('ejs', require('ejs').renderFile);
-// app.set('view engine', 'ejs');
-
+// app.set('view engine', 'ejs')
+app.set('view engine', 'html');
 /************
 * CORS *
  ************/
@@ -58,9 +58,12 @@ var db = require('./models');
 // i.e. `/images`, `/scripts`, `/styles`
 var routes = require('./config/routes');
 app.use(routes);
-app.use(express.static('public'));
-app.use(express.static(__dirname + '/public')); 
+// app.use(express.static('public'));
+// app.use(express.static(__dirname + '/public')); 
+app.use(express.static(__dirname, 'public'));
+app.use(express.static('views'));
 app.set('views', './views');
+// app.set('views', __dirname + '/views'); // general config
 /*
  * HTML Endpoints
  */

@@ -3,14 +3,14 @@ var apiKey = "AIzaSyBBJ_3VrFAhw6K3qO-YbX4eMM-MAfLNQgc";
 
 // GET /signup
 function getSignup(request, response) {
-	response.render('signup.ejs', { message: request.flash('signupMessage') });
+	response.render('contact_page.html', { message: request.flash('signupMessage') });
 }
 
 // POST /signup
 function postSignup(request, response) {
   var signupStrategy = passport.authenticate('local-signup', {
     successRedirect : '/',
-    failureRedirect : '/signup',
+    failureRedirect : '/contact_page',
     failureFlash : true
   });
 
@@ -21,14 +21,14 @@ function postSignup(request, response) {
 
 // GET /login
 function getLogin(request, response) { 
-	response.render('login.ejs', { message: request.flash('loginMessage') });
+	response.render('contact_page.html', { message: request.flash('loginMessage') });
 }
 
 // POST /login 
 function postLogin(request, response) {
     var loginProperty = passport.authenticate('local-login', {
-      successRedirect : '/',
-      failureRedirect : '/login',
+      successRedirect : '/thankyou',
+      failureRedirect : '/contact_page',
       failureFlash : true
     });
 
