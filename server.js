@@ -14,13 +14,8 @@ var request = require("request");
 
 app = express();
 app.use(morgan('dev')); 
-// app.engine('ejs', require('ejs').renderFile);
-// app.set('view engine', 'ejs')
-app.set('view engine', 'html');
-/************
-* CORS *
- ************/
-
+app.engine('ejs', require('ejs').renderFile);
+app.set('view engine', 'ejs');
 
 /************
  * PARSING *
@@ -29,7 +24,7 @@ app.set('view engine', 'html');
 // - deactivated du to unreselved error
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-// app.use(cookieParser());
+app.use(cookieParser());
 app.use(bodyParser()); 
 
 /************
@@ -58,17 +53,21 @@ var db = require('./models');
 // i.e. `/images`, `/scripts`, `/styles`
 var routes = require('./config/routes');
 app.use(routes);
-// app.use(express.static('public'));
-// app.use(express.static(__dirname + '/public')); 
-app.use(express.static(__dirname, 'public'));
-app.use(express.static('views'));
+app.use(express.static('public'));
+app.use(express.static(__dirname + '/public')); 
 app.set('views', './views');
-// app.set('views', __dirname + '/views'); // general config
+
 /*
  * HTML Endpoints
  */
 app.get('/', function homepage(request, response) {
-  response.sendFile(__dirname + '/views/index.html');
+  response.sendFile(__dirname + '/views/index.ejs');
+});
+app.get('/search_results', function search_results(request, response) {
+  response.render(__dirname + '/views/search_results.ejs');
+});
+app.get('/contact_page', function contact_page(request, response) {
+  response.render(__dirname + '/views/contact_page.ejs');
 });
 
 /**********

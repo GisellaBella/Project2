@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>G's WDI Project 2</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Righteous|Varela" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="./css/styles.css">
+
+</head>
+<body>
+
+
+<!-- Top Navigation Bar  -->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+        <li class="active"><a class = "visible-phone" href="index.ejs">Gisella's Project 2: BikeFinder</a></li>
+        <li><a href="https://trello.com/b/oAq48IA0/wdi-project-2-bikefinder">Trello User Stories & Sprints</a></li>
+        <li><a href="orginal_wireframes.ejs">Original Wireframes</a></li> 
+        <li><a href="readMe.md">ReadMe</a></li> 
+      </ul>
+ 
+    </div>
+  </div>
+</nav>
+<!-- End of Top Navigation Bar  -->
+
+<div class="container-fluid">
+  <row>
+    <div>
+      <h2>
+        <span class = "logofont margin-left">BikeFinder </span>
+      </h2>
+    </div>
+  </row>
+<div>
+  <row>
+<!-- Headline Box with Value Prop and Invitation -->
+    <div id="startsearch" class="center">
+      <h1>Searching for a bike rental for your next trip or vacation?</h1>
+      <h2>Let <span class = "logofont">BikeFinder </span> help you.</h2>
+      <h4>Start by entering your pick up location.</h4>
+        <div class="locationBox">
+            <input id="autocomplete" placeholder="Enter a city" type="text"/>
+        </div>
+        <br>
+        - or - 
+        <br>
+        <a href = "/search_results" class="margin-top btn btn-primary">Search Your Current Location </a>
+    </div>
+
+  </row>
+<!-- Map Box -->
+  <row class="center">
+    <div id="map">
+    </div>
+  </row>
+<!--   End of Map Box -->
+<!-- Result Boxes    -->   
+<row>
+    <div id="results_div" class ="center">
+    <br>
+       <form id="ids" action="test.php" method="post">
+      <h4> Check the shops you’d like <span class = "logofont">BikeFinder </span>
+       to contact on your behalf. 
+       </h4> 
+            <form id="iDs" action="test.php" method="post">
+
+             <input id = "fButton" class= "margin-top btn btn-primary" type="button" onClick="collectIds()" value="Submit form">
+          <div id="results">
+       
+          </div>
+
+       
+               </form>
+    </div>
+</row>
+<!-- End of Result Boxes -->
+
+<!-- Info Window Boxes -->
+    <div style="display: none">
+      <div id="info-content">
+        <table>
+          <tr id="iw-url-row" class="iw_table_row">
+            <td id="iw-icon" class="iw_table_icon"></td>
+            <td id="iw-url"></td>
+          </tr>
+          <tr id="iw-address-row" class="iw_table_row">
+            <td class="iw_attribute_name">Address:</td>
+            <td id="iw-address"></td>
+          </tr>
+          <tr id="iw-phone-row" class="iw_table_row">
+            <td class="iw_attribute_name">Telephone:</td>
+            <td id="iw-phone"></td>
+          </tr>
+          <tr id="iw-website-row" class="iw_table_row">
+            <td class="iw_attribute_name">Website:</td>
+            <td id="iw-website"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+<!-- End ofInfo Window Boxes -->
+
+<!-- Sticky Footer -->
+  <footer class="footer"> 
+    <div class="text-muted small">
+      <ul class = "footnav"> 
+        <li class="first-li"> © BikeFinder, Inc.</li>
+        <li><a href = "terms.html" > Terms & Privacy </a></li>
+        <li>Facebook</li>
+        <li>Twitter</li>
+        <li class ="last-li">Instagram</li>
+      </ul>
+    </div>
+  </footer>
+<!-- End of Sticky Footer -->
+  
+    <script>
+      // This example uses the autocomplete feature of the Google Places API.
+      // It then displays markers for all the shops returned,
+      // with on-click details for each hotel.
+
+      // This example requires the Places library. 
+
+      var map, places, infoWindow;
+      var markers = [];
+      var autocomplete;
+      var MARKER_PATH = 'https://developers.google.com/maps/documentation/javascript/images/marker_green';
+      var hostnameRegexp = new RegExp('^https?://.+?/');
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+           center: {lat: -33.8688, lng: 151.2195},
+          zoom: 13,
+          mapTypeId: 'roadmap'
+        });
+
+        infoWindow = new google.maps.InfoWindow({
+          content: document.getElementById('info-content')
+        });
+
+        // Create the autocomplete object and associate it with the UI input control.
+        // Restrict the search to US, and to place type "cities".
+        autocomplete = new google.maps.places.Autocomplete(
+            /** @type {!HTMLInputElement} */ (
+                document.getElementById('autocomplete')), {
+              types: ['(cities)'],
+            });
+        places = new google.maps.places.PlacesService(map);
+
+        autocomplete.addListener('place_changed', onPlaceChanged);
+
+        //  DOM event listener to react when the user makes selection
+  
+      }
+
+      // When the user selects a city, get the place details for the city and
+      // zoom the map in on the city.
+      function onPlaceChanged() {
+        var place = autocomplete.getPlace();
+        if (place.geometry) {
+          //showing the map and results Div, while hiding the initial query div.
+          document.getElementById('map').style.display="block";
+          document.getElementById('results_div').style.display="block";
+          document.getElementById('startsearch').style.display="none";
+          map.panTo(place.geometry.location);
+          map.setZoom(14);
+          var center = map.getCenter(); google.maps.event.trigger(map, 'resize'); 
+          map.setCenter(center);
+          search();
+        } else {
+          document.getElementById('autocomplete').placeholder = 'Enter a city';
+        }
+      }
+
+      // Search for bike rental in the selected city, within the viewport of the map.
+      function search() {
+        var search = {
+          bounds: map.getBounds(),
+          types: ['bicycle_store']
+        };
+
+        places.nearbySearch(search, function(results, status) {
+          if (status === google.maps.places.PlacesServiceStatus.OK) {
+            clearResults();
+            clearMarkers();
+            // Create a marker for each shop found
+            for (var i = 0; i < results.length; i++) {
+              markers[i] = new google.maps.Marker({
+                position: results[i].geometry.location,
+                animation: google.maps.Animation.DROP,
+                icon: "./images/bike.png"
+              });
+              // If the user clicks a shop marker, show the details 
+              // in an info window.
+              markers[i].placeResult = results[i];
+              google.maps.event.addListener(markers[i], 'click', showInfoWindow);
+              setTimeout(dropMarker(i), i * 100);
+              addResult(results[i], i);
+            }
+          }
+        });
+      }
+
+      function clearMarkers() {
+        for (var i = 0; i < markers.length; i++) {
+          if (markers[i]) {
+            markers[i].setMap(null);
+          }
+        }
+        markers = [];
+      }
+
+            // Center and zoom the map on the given selection
+      function setAutocompleteCity() {
+        var city = document.getElementById('autocomplete').value;
+        if (city == 'all') {
+          autocomplete.setComponentRestrictions([]);
+          map.setCenter({lat: 15, lng: 0});
+          map.setZoom(2);
+        } else {
+          autocomplete.setComponentRestrictions({'city': country});
+          map.setCenter(countries[country].center);
+          map.setZoom(countries[country].zoom);
+        }
+        clearResults();
+        clearMarkers();
+      }
+
+      function dropMarker(i) {
+        return function() {
+          markers[i].setMap(map);
+        };
+      }
+
+      function addResult(result, i) {
+        var results = document.getElementById('results');
+        var resultDiv = document.createElement('div');
+        resultDiv.style.padding = "20px";
+        resultDiv.style.float = "left";
+        resultDiv.style.borderStyle = "solid";
+        resultDiv.style.backgroundColor = "white";
+        resultDiv.style.margin= "15px";
+        resultDiv.style.borderColor= "red";
+        resultDiv.style.borderWidth= "1px";
+        resultDiv.style.width= "200px";
+        resultDiv.style.height = "250px";
+        resultDiv.style.textAlign = "left";
+  
+        resultDiv.onclick = function() {
+        google.maps.event.trigger(markers[i], 'click');
+        };
+
+        var idDiv = document.createElement('div');
+        idDiv.innerHTML = '<input type="checkbox" name="checkbox" value="'+result.place_id+'"/> Contact <hr class="dotted">';
+        resultDiv.appendChild(idDiv);
+
+        var nameDiv = document.createElement('div');
+        nameDiv.innerHTML = "<h4>" + result.name + "</h4>";
+        resultDiv.appendChild(nameDiv);
+
+        var addressDiv = document.createElement('div');
+        addressDiv.innerHTML = "<p>" + result.vicinity + "</p>";
+        resultDiv.appendChild(addressDiv);
+
+        // var urlDiv = document.createElement('div');
+        // var url = document.createTextNode(result.url);   
+        // urlDiv.appendChild(url);
+        // resultDiv.appendChild(urlDiv);
+
+        var phoneDiv = document.createElement('div');
+        var phone = document.createTextNode(result.phone);   
+        phoneDiv.appendChild(phone);
+        resultDiv.appendChild(phoneDiv);     
+
+        results.appendChild(resultDiv);
+      }
+      
+ function collectIds( form) {
+  // console.log("hola");
+  var boxIds= [];// array that will store the value of selected checkboxes
+  //   var boxes = document.getElementsByTagName('input');//gets all the input tags in form
+  //     console.log(boxes);
+  //   var len = boxes.length;
+  //   for(var i=0; i<len; i++) {
+  //   if (boxes[i].type == 'checkbox' && boxes[i].checked === true) 
+  //     checkedBox.push(boxes[i].value); 
+  //   }
+  //   return checkedBox;
+  // }
+  //    var checkedBox = [];// array that will store the value of selected checkboxes
+    // var boxes =  document.getElementById('iDs').getElementsByName('checkbox');//gets all the input tags in form
+   var boxes =  document.getElementById('iDs').getElementsByTagName('input');//gets all the input tags in form
+    var len = boxes.length;
+    for(var i=0; i<len; i++) {
+    // if (boxes[i].type == 'checkbox' && boxes[i].checked === true)
+    if ( boxes[i].checked === true)
+      console.log(boxes.length); 
+      checkedBox.push(boxes[i].value); 
+    }
+    console.log(boxIds);
+    return boxIds;
+  }
+ 
+ 
+
+
+
+
+      function clearResults() {
+        var results = document.getElementById('results');
+        while (results.childNodes[0]) {
+          results.removeChild(results.childNodes[0]);
+        }
+      }
+
+
+
+      // Get the place details for bike shop. Show the information in an info window,
+      // anchored on the marker for the shop that the user selected.
+      function showInfoWindow() {
+        var marker = this;
+        places.getDetails({placeId: marker.placeResult.place_id},
+            function(place, status) {
+              if (status !== google.maps.places.PlacesServiceStatus.OK) {
+                return;
+              }
+              infoWindow.open(map, marker);
+              buildIWContent(place);
+            });
+      }
+
+      // Load the place information into the HTML elements used by the info window.
+      function buildIWContent(place) {
+        document.getElementById('iw-url').innerHTML = '<b><a href="' + place.url +
+            '">' + place.name + '</a></b>';
+        document.getElementById('iw-address').textContent = place.vicinity;
+
+        if (place.formatted_phone_number) {
+          document.getElementById('iw-phone-row').style.display = '';
+          document.getElementById('iw-phone').textContent =
+              place.formatted_phone_number;
+        } else {
+          document.getElementById('iw-phone-row').style.display = 'none';
+        }
+        if (place.website) {
+          var fullUrl = place.website;
+          var website = hostnameRegexp.exec(place.website);
+          if (website === null) {
+            website = 'http://' + place.website + '/';
+            fullUrl = website;
+          }
+          document.getElementById('iw-website-row').style.display = '';
+          document.getElementById('iw-website').textContent = website;
+        } else {
+          document.getElementById('iw-website-row').style.display = 'none';
+        }
+
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB47TKXs1AAflxa1PA-WNj6UZ2Ylfd48DE&libraries=places&callback=initMap" async defer></script>
+  </body>
+</html>

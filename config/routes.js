@@ -7,7 +7,7 @@ var methodOverride = require('method-override');
 var passport = require("passport");
 var usersController = require('../controllers/users');
 var staticsController = require('../controllers/statics');
-var env = require('../env');
+// var env = require('../env');
 
 
 router.route('/')

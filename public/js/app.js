@@ -4,33 +4,6 @@
 
 console.log ("app.js loaded");
 
-// $( "#location").submit(function (event) {
-// alert("yo");
-// event.preventDefault();
-
-// });
-
-  
-//   var search = $("#search").val();
-//  	$ form.action='';
-  // $.post ('/api/search', search, function(data) {
-  //   $('result').append(data);
-
-// 	    $.ajax ({ 
-// 	      url: "https://maps.googleapis.com/maps/api/place/textsearch/json?query=bikeshops+in+"+search+ "&key=AIzaSyBBJ_3VrFAhw6K3qO-YbX4eMM-MAfLNQgc",
-// 	      type: 'GET',
-// 	      contentType: 'text/plain',
-// 	      crossDomain : true,
-// 	      //https://maps.googleapis.com/maps/api/place/textsearch/json?query=bikeshops+in+boulder,co&key=AIzaSyBBJ_3VrFAhw6K3qO-YbX4eMM-MAfLNQgc
-// 	     //https://maps.googleapis.com/maps/api/place/nearbysearch/output?parameters
-// 		    success: function (data){
-// 		        console.log(data);
-// 		    }
-// 		 });
-
-//    }
-// }
-
 function initGeolocation() {
   if( navigator.geolocation ) {
   // Call getCurrentPosition with success and failure callbacks
@@ -59,7 +32,7 @@ function success(position) {
     // Create the map, and place it in the map_canvas div
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
     //search for bike shops  within 2 miles of our current location
-    placesRequest('Bikes',currentLocation,1500,['bikes'],'images/bike.png');
+    placesRequest('Bikes',currentLocation,1500,['bikes'],'./images/bike.png');
     // Place the initial marker
     var marker = new google.maps.Marker({
               position: currentLocation,
@@ -70,8 +43,7 @@ function success(position) {
 function fail() {
 // Could not obtain location
 }    
-// service= new google.maps.places.PlacesService(map);
-// google.maps.event.addListenerOnce(map, 'bounds_changed', placesRequest);
+
 
 //Request places from Google
 function placesRequest(title,latlng,radius,types,icon) {
@@ -81,25 +53,37 @@ function placesRequest(title,latlng,radius,types,icon) {
         name: "bike shops",
         location: latlng,
         radius: radius,
-        types: types
+        types: ['bicycle_shop'],
     };
 
   //Make the service call to google
   var callPlaces = new google.maps.places.PlacesService(map);
   callPlaces.search(request, function(results,status){
-    console.log(results);
 
-      //trace what Google gives us back
+    console.log(results);
+      //loop over what Google gives us back
       $.each(results, function(i,place){
         var placeLoc = place.geometry.location;
-         var thisplace = new google.maps.Marker({
+        var url_b = place.author_url;
+        var address_b = place.formatted_address;
+        var phone = place.formatted_phone_number;
+        var url = place.url;
+        var website = place.website;
+        var name = place.name;
+        var address = place.vicinity;
+        var id = place.place_id;
+        var thisplace = new google.maps.Marker ({
            map: map,
            position: place.geometry.location,
-           icon: 'images/bike.png',
+           icon: './images/bike.png',
            title: place.name
-         });
-      });
+           });
+             
+        console.log( name, address, id, phone, url);
 
-  });
-  
-}
+
+        });
+      });
+      
+    }
+

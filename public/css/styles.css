@@ -3,18 +3,48 @@
 font-family: 'Varela', sans-serif;
 }
 
-html, body {padding:0; margin:0; height:100%;}
+html, body {
+  padding:0; 
+  margin:0; 
+  height:100%;
+}
+.container-fluid {
+  margin-bottom: 50px;
+}
+/* Logo type-------------------------------*/
+.logofont {
+  font-family: 'Righteous', cursive;
+  color: #2e6da4;
+}
 
+/*Nav Bar-------------------------------*/
 .navbar-inverse .navbar-nav>.active>a, 
 .navbar-inverse .navbar-nav>.active>a:focus, 
 .navbar-inverse .navbar-nav>.active>a:hover {
-background-color: transparent;
+	background-color: transparent;
 }
 
+.navbar-brand {
+    font-size: 15px;
+    position: absolute;
+    margin: 0;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    list-style: none;
+    margin: 0;
+    padding-top: 12px;
+}
+
+.fButton {
+  vertical-align: top;
+  position: absolute;
+}
+
+/*General Styling----------------------*/
 .center {
 	text-align: center;
 }
-
 .row {
  	margin: 30px 0
  	border: 1px black;
@@ -22,23 +52,24 @@ background-color: transparent;
 .margin-right {
 	margin-right: 10px;
 }
+.margin-top{
+  margin-top: 10px;
+}
 .margin-left {
 	margin-left: 20px;
 }
 
-.logofont {
-	font-family: 'Righteous', cursive;
-	color: #2e6da4;
-}
-.center {
-	text-align: center;
-}
 .xtra-padding {
 	padding-top: 20px;
 	padding-bottom: 30px;
 }
+.inline {
+  display: inline-block;
+  float: left;
+}
 
-/* Button & Form
+
+/* Button & Form Styling
 -------------------------------------------------- */
 .button-box {
 	align-content: center;
@@ -57,51 +88,81 @@ background-color: transparent;
 	border-radius: 0px;
 	}
 
+#autocomplete {
+  width: 45%;
+  padding: 15px 0px 15px 8px;
+  height: 10px;
+  margin-top: 8px;
+}
 
 
 
-
-/*Box for footer
-	-------------------------------------------------- */
+  /*Footer Styling------------------------------------------------- */
 .footer { 
-  position: absolute;
+
+  position: fixed;
+  clear:both;
   bottom: 0px;
   left: 0; 
   right: 0;
   width: 100%;
   height: 50px;
+  margin-top: -50px;
   background-color: #f5f5f5;
 }
 
 /*Display styling for footer links*/
 .footnav { 
-	list-style :none;
-	padding:0;
-	margin:0;
-	padding-top: 20px;
+  list-style :none;
+  padding:0;
+  margin:0;
+  padding-top: 20px;
+  display:flex;
+  justify-content: space-between;
 }
-
-/* Dotted Horizontal Line Styling 
--------------------------------------------------- */
-.dotted {
-	border-top: 1px dotted #8c8b8b;
-	border-bottom: 1px dotted #fff;
-}
-
-.footnav {/*Display styling for footer links*/
-	display:flex;
-	justify-content: space-between;
-}
-
 .first-li {
-	padding-left: 40px;
+  padding-left: 40px;
 }
 .last-li { 
-	padding-right: 40px; 
+  padding-right: 40px; 
 }
+
+/*Google Maps Styling---------------------------------- */
+
+/*GeoTriggered Map--------------------------------------------*/
+#map-result {
+  height:100%;
+  margin:0px;
+  background-color: grey;
+  float: left;
+}
+
+/*Map Div Styling--------------------------------------------------------------*/
+#map_canvas {
+  height:400px; 
+  margin-left:auto; 
+  margin-right:auto;
+  margin-bottom: 20px;
+  width :80%;
+  padding-top: 10px;
+}
+
+/*Search Query Map---------------*/
+#map {
+  height: 400px;  
+  width :80%; 
+  margin-left:auto; 
+  margin-right:auto;
+  display:none;
+}
+
+#results_div {
+  display:none; 
+}
+
 /* Styling for the result boxes
 -------------------------------------------------- */
-.result-box {
+/*.resultDiv {
 	padding:20px;
 	display: block;
 	float: left;
@@ -109,49 +170,46 @@ background-color: transparent;
 	border: 1px solid;
 	border-color: red;
 	margin: 5px 5px 5px 0px;
+}*/
 
+#controls {
+  position: absolute;
+  left: 300px;
+  width: 140px;
+  top: 0px;
+  z-index: 5;
+  background-color: #fff;
 }
 
-/*Google Map Div-------------------------------------------------- */
-#map-result {
-height:100%;
-   margin:0px;
-   background-color: grey;
-   float: left;
+#country {
+  width: 90%;
+}
+.placeIcon {
+  width: 20px;
+  height: 34px;
+  margin: 4px;
 }
 
-=======
->>>>>>> 4f6378dd6b4ff8a9bf869670271a0abd132bf2e4
-
-.button-box {
-	display: block;
-	float: left;
-	border-radius: 2px;
-	margin: 5px 5px 10px 0px;
+#results {
+padding-bottom: 200px;
 }
 
-/* Responsive Image styling
--------------------------------------------------- */
-.imgwrapper {
-   width: 95%;
-  /* margin-bottom: 30px;*/
-}
 
-#results-map {
-	margin-left: 0;
-	margin-top: 20px;
+/*Info Window Styling--------------------*/
+#rating {
+  font-size: 13px;
+  font-family: Arial Unicode MS;
 }
-/* Styling For the  Collapsable Hours Menu For Place Results Page
--------------------------------------------------- */
-.hours {
-	width: 100%;
-	border: 1px grey;
+.iw_table_row {
+  height: 18px;
 }
-
-.table>tbody>tr>td {
-	padding:4px;
+.iw_attribute_name {
+  font-weight: bold;
+  text-align: right;
 }
-
+.iw_table_icon {
+  text-align: right;
+}
 
 /* Styling For the Checkboxes-------------------------------------------------- */
 input[type=checkbox] + label {
@@ -163,28 +221,7 @@ input[type=checkbox]:checked + label {
   color: green;
   font-style: normal;
 } 
-/*
-Fixed Top Nav Bar Styling------------------------------------------------- */
-.navbar-brand {
-/*    float: left;*/
-    font-size: 15px;
-    position: absolute;
-   	margin: 0;
-}
 
-.navbar-inverse .navbar-nav>li>a {
-    list-style: none;
-    margin: 0;
-  	padding-top: 12px;
-}
 
-/*Map Div Styling--------------------------------------------------------------*/
 
-.map_canvas {
-height:500px; 
-margin-left:400px; 
-border-right: 1px solid #666666; 
-border-bottom: 1px solid #666666; 
-border-top: 1px solid #AAAAAA; 
-border-left: 1px solid #AAAAAA;
-}
+  
