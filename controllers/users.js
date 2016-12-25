@@ -1,5 +1,5 @@
 var passport = require("passport");
-var apiKey = "AIzaSyBBJ_3VrFAhw6K3qO-YbX4eMM-MAfLNQgc";
+
 
 // GET /signup
 function getSignup(request, response) {

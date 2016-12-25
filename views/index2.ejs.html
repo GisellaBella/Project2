@@ -1,4 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>G's WDI Project 2</title>
 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Righteous|Varela" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="./css/styles.css">
+
+</head>
+<body>
+
+
+<!-- Top Navigation Bar  -->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+        <li class="active"><a class = "visible-phone" href="index.ejs">Gisella's Project 2: BikeFinder</a></li>
+        <li><a href="https://trello.com/b/oAq48IA0/wdi-project-2-bikefinder">Trello User Stories & Sprints</a></li>
+        <li><a href="orginal_wireframes.ejs">Original Wireframes</a></li> 
+        <li><a href="readMe.md">ReadMe</a></li> 
+      </ul>
+ 
+    </div>
+  </div>
+</nav>
+<!-- End of Top Navigation Bar  -->
+
+<div class="container-fluid">
+  <row>
+    <div>
+      <h2>
+        <span class = "logofont margin-left">BikeFinder </span>
+      </h2>
+    </div>
+  </row>
+<div>
+  <row>
+<!-- Headline Box with Value Prop and Invitation -->
+    <div id="startsearch" class="center">
+      <h1>Searching for a bike rental for your next trip or vacation?</h1>
+      <h2>Let <span class = "logofont">BikeFinder </span> help you.</h2>
+      <h4>Start by entering your pick up location.</h4>
+        <div class="locationBox">
+            <input id="autocomplete" placeholder="Enter a city" type="text"/>
+        </div>
+        <br>
+        - or - 
+        <br>
+        <a href = "/search_results" class="margin-top btn btn-primary">Search Your Current Location </a>
+    </div>
+
+  </row>
+<!-- Map Box -->
+  <row class="center">
+    <div id="map">
+    </div>
+  </row>
+<!--   End of Map Box -->
+<!-- Result Boxes    -->   
+<row>
+    <div id="results_div" class ="center">
+    <br>
+       <form id="iDs" method="post">
+      <h4> Check the shops you’d like <span class = "logofont">BikeFinder </span>
+       to contact on your behalf. 
+       </h4> 
+             <input id = "fButton" class= "margin-top btn btn-primary" type="button" onClick="collectIds()" value="Submit form">
+          <div id="results">
+       
+          </div>
+
+       
+               </form>
+    </div>
+</row>
+<!-- End of Result Boxes -->
+
+<!-- Info Window Boxes -->
+    <div style="display: none">
+      <div id="info-content">
+        <table>
+          <tr id="iw-url-row" class="iw_table_row">
+            <td id="iw-icon" class="iw_table_icon"></td>
+            <td id="iw-url"></td>
+          </tr>
+          <tr id="iw-address-row" class="iw_table_row">
+            <td class="iw_attribute_name">Address:</td>
+            <td id="iw-address"></td>
+          </tr>
+          <tr id="iw-phone-row" class="iw_table_row">
+            <td class="iw_attribute_name">Telephone:</td>
+            <td id="iw-phone"></td>
+          </tr>
+          <tr id="iw-website-row" class="iw_table_row">
+            <td class="iw_attribute_name">Website:</td>
+            <td id="iw-website"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+<!-- End ofInfo Window Boxes -->
+
+<!-- Sticky Footer -->
+  <footer class="footer"> 
+    <div class="text-muted small">
+      <ul class = "footnav"> 
+        <li class="first-li"> © BikeFinder, Inc.</li>
+        <li><a href = "terms.html" > Terms & Privacy </a></li>
+        <li>Facebook</li>
+        <li>Twitter</li>
+        <li class ="last-li">Instagram</li>
+      </ul>
+    </div>
+  </footer>
+<!-- End of Sticky Footer -->
+  
+    <script>
       // This example uses the autocomplete feature of the Google Places API.
       // It then displays markers for all the shops returned,
       // with on-click details for each hotel.
@@ -159,11 +287,11 @@
         results.appendChild(resultDiv);
       }
       
-
-///form that collets the Google store IDs user is interested in.
- function collectIds( form ) {
-  var boxes =  document.getElementById('iDs');
+ function collectIds( form) {
+  console.log("hola");
+  var boxes =  document.getElementById('iDs')
   var boxIds= [];// array that will store the value of selected checkboxes
+   console.log(iDs);
    if (boxes.childNodes.length > 1) {
     // It will have 1 -the submit button
   var inputs = document. getElementsByTagName('input');//gets all the input tags in form
@@ -172,21 +300,30 @@
     if ( boxes[i].checked === true)
       boxIds.push(boxes[i].value); 
     }
-        localStorage.setItem('boxIds', JSON.stringify(boxIds));
-        window.location.replace("/contact_page");
-    return boxIds;
+    console.log(boxIds);
+    // return boxIds;
   } else {
 
   }
  }
+//  window.onload=function() {
+//   console.log("button 1");
+//   document.getElementById("fButton").click=function() {
+//     console.log("button 2");
+//     window.location.replace("/contact_page");
+//     return false;
+//   }
+// }
+fButton.addEventListener("click", function(){ 
+   window.location.replace("/contact_page");
+});
 
-
-function clearResults() {
-  var results = document.getElementById('results');
-  while (results.childNodes[0]) {
-    results.removeChild(results.childNodes[0]);
-  }
-}
+      function clearResults() {
+        var results = document.getElementById('results');
+        while (results.childNodes[0]) {
+          results.removeChild(results.childNodes[0]);
+        }
+      }
 
 
 
@@ -231,29 +368,7 @@ function clearResults() {
         }
 
       }
-
-$('input[name="daterange"]').daterangepicker(
-{
-    locale: {
-      format: 'YYYY-MM-DD'
-    },
-    startDate: '2017-01-01',
-    endDate:  '2017-01-31'
-});
-
-
-$( "#contact_form" ).submit(function( event ) {
-event.preventDefault();
-var boxIds = localStorage.getItem('boxIds');
-$( '#storeIds' ).val(boxIds);
-var request=$(this).serialize();
-$.post('/users', request, function(request) {
-console.log('request after post', request);
-// renderthanks (request);
-});
-$(this).trigger("reset");
-  });
-
-
-
-
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB47TKXs1AAflxa1PA-WNj6UZ2Ylfd48DE&libraries=places&callback=initMap" async defer></script>
+  </body>
+</html>

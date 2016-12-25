@@ -13,7 +13,7 @@ var staticsController = require('../controllers/statics');
 router.route('/')
   .get(staticsController.home);
 
-router.route('/signup')
+router.route('/users')
   .get(usersController.getSignup)
   .post(usersController.postSignup);
 
