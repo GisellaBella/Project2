@@ -6,7 +6,7 @@
 * @website: https://www.improvely.com/
 */
 // Follow the UMD template https://github.com/umdjs/umd/blob/master/templates/returnExportsGlobal.js
-
+console.log ("datereangeoickerloaded");
 
 $(function() {
     $('input[name="daterange"]').daterangepicker();

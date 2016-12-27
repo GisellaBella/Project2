@@ -1,0 +1,269 @@
+
+* {
+font-family: 'Varela', sans-serif;
+}
+a:hover  {
+   text-decoration: none;
+}
+html, body {
+  padding:0; 
+  margin:0; 
+  height:100%;
+}
+.imageOne {
+   background-image: url("/images/guybike.png");
+   background-repeat: no-repeat;
+   background-size: 100%;
+}
+.imageTwo {
+   background-image: url("/images/cyclists.png");
+   background-repeat: no-repeat;
+   background-size: 100%;
+}
+.container-fluid {
+  margin-bottom: 50px;
+}
+/* Logo type-------------------------------*/
+.logofont {
+  font-family: 'Righteous', cursive;
+  color: #2e6da4;
+}
+
+/*Nav Bar-------------------------------*/
+.navbar-inverse .navbar-nav>.active>a, 
+.navbar-inverse .navbar-nav>.active>a:focus, 
+.navbar-inverse .navbar-nav>.active>a:hover {
+background-color: transparent;
+}
+
+.navbar-brand {
+    font-size: 15px;
+    position: absolute;
+    margin: 0;
+}
+.navbar {
+  margin-bottom: 0px;
+  height:2px;
+}
+.navbar-inverse .navbar-nav>li>a {
+    list-style: none;
+    margin: 0;
+/*    padding-top: 12px;*/
+
+}
+
+.fButton {
+  vertical-align: top;
+  position: absolute;
+}
+
+/*General Styling----------------------*/
+.center {
+	text-align: center;
+}
+/*.row {
+ 	margin: 30px 0
+ 	border: 1px black;
+}*/
+.margin-right {
+	margin-right: 10px;
+}
+.margin-top{
+  margin-top: 10px;
+}
+.margin-bottom: {
+  margin-bottom: : 10px;
+}
+.margin-left {
+	margin-left: 20px;
+}
+
+.xtra-padding {
+	padding-top: 20px;
+	padding-bottom: 30px;
+}
+.inline {
+  display: inline-block;
+  float: left;
+}
+
+
+/* Button & Form Styling
+-------------------------------------------------- */
+.button-box {
+	align-content: center;
+	display: inline-block;
+	padding: 10px 0px 20px 0px;
+}
+
+.btn {
+	 letter-spacing:1px;
+	 padding : 6px 15px;
+	 border-  : 0px;
+	 margin-bottom: 10px;
+	}
+
+.form-control {
+	border-  : 0px;
+	}
+
+#autocomplete {
+  width: 45%;
+  padding: 15px 0px 15px 8px;
+  height: 10px;
+  margin-top: 8px;
+}
+
+
+
+  /*Footer Styling------------------------------------------------- */
+.footer { 
+
+  position: fixed;
+  color:white;
+  clear:both;
+  bottom: 0px;
+  left: 0; 
+  right: 0;
+  width: 100%;
+  height: 50px;
+  margin-top: -50px;
+  background-color: #000000;
+}
+
+/*Display styling for footer links*/
+.footnav { 
+  list-style :none;
+  padding:0;
+  margin:0;
+  padding-top: 20px;
+  display:flex;
+  justify-content: space-between;
+}
+.first-li {
+  padding-left: 40px;
+  color:white;
+}
+.last-li { 
+  padding-right: 40px; 
+   color:white;
+}
+
+/*Google Maps Styling---------------------------------- */
+
+/*GeoTriggered Map--------------------------------------------*/
+#map-result {
+  height:100%;
+  margin:0px;
+  background-color: grey;
+  float: left;
+}
+
+/*Map Div Styling--------------------------------------------------------------*/
+#map_canvas {
+  height: 400px;  
+  width :80%; 
+  margin-left:auto; 
+  margin-right:auto;
+  margin-bottom: 20px;
+  width :80%;
+  padding-top: 10px;
+
+ 
+/*    border: 4px solid  #2e6da4;
+   box-shadow: 10px 10px 5px #888888;*/
+}
+
+}
+
+/*Search Query Map---------------*/
+#map {
+  height: 400px;  
+  width :800px; 
+  margin-left:auto; 
+  margin-right:auto;
+  display:none;
+/*  border: 4px solid  #2e6da4;
+   box-shadow: 10px 10px 5px #888888;*/
+}
+
+#results_div {
+  display:none; 
+}
+
+/* Styling for the result boxes
+-------------------------------------------------- */
+/*.resultDiv {
+	padding:20px;
+	display: block;
+	float: left;
+	border: 1px solid red;
+	margin: 15px;
+  background-color: white;
+  width: 200px;
+  height: 230px;
+  text-align: left;
+}*/
+
+#controls {
+  position: absolute;
+  left: 300px;
+  width: 140px;
+  top: 0px;
+  z-index: 5;
+  background-color: #fff;
+}
+
+#country {
+  width: 90%;
+}
+.placeIcon {
+  width: 20px;
+  height: 34px;
+  margin: 4px;
+}
+
+#results {
+padding-bottom: 200px;
+}
+
+
+/*Info Window Styling--------------------*/
+#rating {
+  font-size: 13px;
+  font-family: Arial Unicode MS;
+}
+.iw_table_row {
+  height: 18px;
+}
+.iw_attribute_name {
+  font-weight: bold;
+  text-align: right;
+}
+.iw_table_icon {
+  text-align: right;
+}
+
+/* Styling For the Checkboxes-------------------------------------------------- */
+input[type=checkbox] + label {
+  color: #999999;
+  font-style: italic;
+} 
+
+input[type=checkbox]:checked + label {
+  color: green;
+  font-style: normal;
+} 
+
+/*Styling for textbox-------------------*/
+textarea {
+  width: 100%;
+  padding:5px;
+  margin-bottom: 5px;
+  }
+
+  .carousel { 
+  height: 500px;
+  padding-top: 50px;
+  margin: 0px;
+}

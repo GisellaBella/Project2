@@ -12,10 +12,12 @@
       var hostnameRegexp = new RegExp('^https?://.+?/');
 
       function initMap() {
+         google.maps.visualRefresh = true;
         map = new google.maps.Map(document.getElementById('map'), {
-           center: {lat: -33.8688, lng: 151.2195},
-          zoom: 13,
-          mapTypeId: 'roadmap'
+        center: {lat: -33.8688, lng: 151.2195},
+        zoom: 13,
+        mapTypeId: 'roadmap'
+    
         });
 
         infoWindow = new google.maps.InfoWindow({
@@ -36,6 +38,7 @@
         //  DOM event listener to react when the user makes selection
   
       }
+
 
       // When the user selects a city, get the place details for the city and
       // zoom the map in on the city.
@@ -111,6 +114,7 @@
       }
 
       function dropMarker(i) {
+
         return function() {
           markers[i].setMap(map);
         };
@@ -162,17 +166,18 @@
 
 ///form that collets the Google store IDs user is interested in.
  function collectIds( form ) {
-  var boxes =  document.getElementById('iDs');
+  var boxes =  document.getElementById('ids');
   var boxIds= [];// array that will store the value of selected checkboxes
    if (boxes.childNodes.length > 1) {
     // It will have 1 -the submit button
   var inputs = document. getElementsByTagName('input');//gets all the input tags in form
   var len = boxes.length;
     for(var i=0; i<len; i++) {
-    if ( boxes[i].checked === true)
+    if (boxes[i].checked === true)
       boxIds.push(boxes[i].value); 
     }
         localStorage.setItem('boxIds', JSON.stringify(boxIds));
+        alert(boxIds);
         window.location.replace("/contact_page");
     return boxIds;
   } else {
@@ -245,10 +250,12 @@ $('input[name="daterange"]').daterangepicker(
 $( "#contact_form" ).submit(function( event ) {
 event.preventDefault();
 var boxIds = localStorage.getItem('boxIds');
+
 $( '#storeIds' ).val(boxIds);
 var request=$(this).serialize();
+alert (request);
 $.post('/users', request, function(request) {
-console.log('request after post', request);
+alert ('request after post', request);
 // renderthanks (request);
 });
 $(this).trigger("reset");

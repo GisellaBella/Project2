@@ -1,47 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>G's WDI Project 2</title>
+<% include ./partials/topnav.ejs%>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Righteous|Varela" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="./css/styles.css">
-
-</head>
-<body>
-
-
-<!-- Top Navigation Bar  -->
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span> 
-      </button>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav">
-        <li class="active"><a class = "visible-phone" href="/">Gisella's Project 2: BikeFinder</a></li>
-        <li><a href="https://trello.com/b/oAq48IA0/wdi-project-2-bikefinder">Trello User Stories & Sprints</a></li>
-        <li><a href="orginal_wireframes.ejs">Original Wireframes</a></li> 
-        <li><a href="readMe.md">ReadMe</a></li> 
-      </ul>
- 
-    </div>
-  </div>
-</nav>
-<!-- End of Top Navigation Bar  -->
-
-<div class="container-fluid">
+<div class="container-fluid imageOne ">
   <row>
     <div>
       <h2>
-        <a href = "/" <span class = "logofont margin-left">BikeFinder </span> </a>
+        <span class = "logofont margin-left">BikeFinder </span>
       </h2>
     </div>
   </row>
@@ -72,10 +35,12 @@
 <row>
     <div id="results_div" class ="center">
     <br>
-       <form id="iDs" method="post">
+       <form id="ids" action="test.php" method="post">
       <h4> Check the shops you’d like <span class = "logofont">BikeFinder </span>
        to contact on your behalf. 
        </h4> 
+            <form id="iDs" action="test.php" method="post">
+
              <input id = "fButton" class= "margin-top btn btn-primary" type="button" onClick="collectIds()" value="Submit form">
           <div id="results">
        
@@ -125,14 +90,8 @@
     </div>
   </footer>
 <!-- End of Sticky Footer -->
-<!-- jQuery -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
-
- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB47TKXs1AAflxa1PA-WNj6UZ2Ylfd48DE&libraries=places&callback=initMap" async defer></script>
- <script type="text/javascript" src="./js/app2.js"></script>
+  
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB47TKXs1AAflxa1PA-WNj6UZ2Ylfd48DE&libraries=places&callback=initMap" async defer></script>
+ <script type="text/javascript" src="./js/app2.js"></script> 
   </body>
 </html>
