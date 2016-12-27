@@ -4,7 +4,7 @@ var app          = express();
 var mongoose     = require('mongoose');
 var session      = require('express-session');
 // var passport     = require('passport');
-// var flash        = require('connect-flash');
+var flash        = require('connect-flash');
 var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
@@ -12,7 +12,7 @@ var request = require("request");
 // var env = require('env.js');
 
 
-app = express();
+// app = express();
 app.use(morgan('dev')); 
 app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
@@ -22,7 +22,7 @@ app.set('view engine', 'ejs');
  ************/
 
 // - deactivated du to unreselved error
-// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(bodyParser()); 
@@ -37,7 +37,7 @@ app.use(bodyParser());
 // app.use(flash()); 
 // require('./config/passport')(passport);
 app.use(function (req, res, next) {
-  res.locals.currentUser = req.user;
+  res.currentUser = req.user;
   next();
 });
 
@@ -56,6 +56,8 @@ app.use(routes);
 app.use(express.static('public'));
 app.use(express.static(__dirname + '/public')); 
 app.set('views', './views');
+
+
 
 /*
  * HTML Endpoints
@@ -77,6 +79,11 @@ app.get('/original_wireframes', function original_wireframes(request, response) 
 app.get('/readMe', function readMe(request, response) {
   response.render(__dirname + '/views/readMe.ejs');
 });
+
+app.get('/thanks', function thanks(request, response) {
+  response.render(__dirname + '/views/thanks.ejs');
+});
+
 /**********
  * SERVER *
  **********/

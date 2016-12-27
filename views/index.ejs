@@ -4,7 +4,7 @@
   <row>
     <div>
       <h2>
-        <span class = "logofont margin-left">BikeFinder </span>
+       <a href = "/" <span class = "logofont margin-left">BikeFinder </span> </a>
       </h2>
     </div>
   </row>
@@ -33,16 +33,16 @@
 <!--   End of Map Box -->
 <!-- Result Boxes    -->   
 <row>
-    <div id="results_div" class ="center">
+    <div id="results_div" class="col-l-10 col-l-offset-1 center">
     <br>
-       <form id="ids" action="test.php" method="post">
+   
       <h4> Check the shops you’d like <span class = "logofont">BikeFinder </span>
        to contact on your behalf. 
        </h4> 
-            <form id="iDs" action="test.php" method="post">
+            <form id="iDs" method="post">
 
              <input id = "fButton" class= "margin-top btn btn-primary" type="button" onClick="collectIds()" value="Submit form">
-          <div id="results">
+          <div id="results" class="margin-center">
        
           </div>
 
@@ -77,21 +77,8 @@
     </div>
 <!-- End ofInfo Window Boxes -->
 
-<!-- Sticky Footer -->
-  <footer class="footer"> 
-    <div class="text-muted small">
-      <ul class = "footnav"> 
-        <li class="first-li"> © BikeFinder, Inc.</li>
-        <li><a href = "terms.html" > Terms & Privacy </a></li>
-        <li>Facebook</li>
-        <li>Twitter</li>
-        <li class ="last-li">Instagram</li>
-      </ul>
-    </div>
-  </footer>
-<!-- End of Sticky Footer -->
+
   
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB47TKXs1AAflxa1PA-WNj6UZ2Ylfd48DE&libraries=places&callback=initMap" async defer></script>
  <script type="text/javascript" src="./js/app2.js"></script> 
-  </body>
-</html>
+<% include ./partials/footer.ejs%>

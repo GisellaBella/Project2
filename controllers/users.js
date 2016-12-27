@@ -3,21 +3,47 @@
 
 
 // // // GET /signup
-// // function getSignup(request, response) {
-// // 	response.render('signup.ejs', { message: request.flash('signupMessage') });
-// // }
+function getSignup(request, response) {
+	response.render('yo', { message: request.flash('yo') });
+}
 
 // POST /signup
-function postSignup(request, response) {
-alert ("mafe it to postSignup");
-console.log(request.body);
-  var newUser = new db.User(request.body);
-   newUser.save(function (err, user){
-          if (err) { 
-            return console.log("user Inquiry error: " + err);
-          } 
-          response.json(user);
-        });
+function postSignup(req,res,next) {
+// console.log(request.body);
+// db.User.create(request.body, function(err, user) {
+//       if (err) {
+//       console.log('error', err);
+//       }
+//     console.log(user);
+//     response.json(user);
+    
+//   });
+
+
+  daterange=req.body.daterange;
+  name=req.body.name;
+  email=req.body.email;
+  password= req.body.password;
+  tel=req.body.tel;
+  road=req.body.road;
+  mountain= req.body.mountain;
+  townie=req.body.townie;
+  available= req.body.available;
+  comment=req.body.comment;
+  storeIds=req.body.storeIds;
+
+    user.findOne({'username':username,'password':password},function(err,docs){
+        //do something
+    });
+
+
+  // var newUser = new db.User(request.body);
+  //  newUser.save(function (err, user){
+  //         if (err) { 
+  //           return console.log("user Inquiry error: " + err);
+  //         } 
+  //         response.json(user);
+  //       });
     
 
 
@@ -62,7 +88,7 @@ module.exports = {
   // search: search,
   // getLogin: getLogin,
   // postLogin: postLogin ,
-  // getSignup: getSignup,
+  getSignup: getSignup,
   postSignup: postSignup,
   // getLogout: getLogout,
   // secret: secret,

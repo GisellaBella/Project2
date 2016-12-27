@@ -123,15 +123,15 @@
       function addResult(result, i) {
         var results = document.getElementById('results');
         var resultDiv = document.createElement('div');
-        resultDiv.style.padding = "20px";
+        resultDiv.style.padding = "15px";
         resultDiv.style.float = "left";
         resultDiv.style.borderStyle = "solid";
         resultDiv.style.backgroundColor = "white";
-        resultDiv.style.margin= "15px";
+        resultDiv.style.margin= "10px";
         resultDiv.style.borderColor= "red";
         resultDiv.style.borderWidth= "1px";
         resultDiv.style.width= "200px";
-        resultDiv.style.height = "250px";
+        resultDiv.style.height = "230px";
         resultDiv.style.textAlign = "left";
   
         resultDiv.onclick = function() {
@@ -166,7 +166,7 @@
 
 ///form that collets the Google store IDs user is interested in.
  function collectIds( form ) {
-  var boxes =  document.getElementById('ids');
+  var boxes =  document.getElementById('iDs');
   var boxIds= [];// array that will store the value of selected checkboxes
    if (boxes.childNodes.length > 1) {
     // It will have 1 -the submit button
@@ -259,7 +259,8 @@ alert ('request after post', request);
 // renderthanks (request);
 });
 $(this).trigger("reset");
-  });
+$(window).attr('location', '/thanks');
+ });
 
 
 
