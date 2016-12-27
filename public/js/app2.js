@@ -123,7 +123,7 @@
       function addResult(result, i) {
         var results = document.getElementById('results');
         var resultDiv = document.createElement('div');
-        resultDiv.style.padding = "15px";
+        resultDiv.style.padding = "10px";
         resultDiv.style.float = "left";
         resultDiv.style.borderStyle = "solid";
         resultDiv.style.backgroundColor = "white";
@@ -131,7 +131,7 @@
         resultDiv.style.borderColor= "red";
         resultDiv.style.borderWidth= "1px";
         resultDiv.style.width= "200px";
-        resultDiv.style.height = "230px";
+        resultDiv.style.height = "200px";
         resultDiv.style.textAlign = "left";
   
         resultDiv.onclick = function() {
@@ -151,14 +151,14 @@
         resultDiv.appendChild(addressDiv);
 
         // var urlDiv = document.createElement('div');
-        // var url = document.createTextNode(result.url);   
+        // var url = document.createTextNode(result.website);   
         // urlDiv.appendChild(url);
         // resultDiv.appendChild(urlDiv);
 
-        var phoneDiv = document.createElement('div');
-        var phone = document.createTextNode(result.phone);   
-        phoneDiv.appendChild(phone);
-        resultDiv.appendChild(phoneDiv);     
+        // var phoneDiv = document.createElement('div');
+        // var phone = document.createTextNode(result.formatted_phone_number);   
+        // phoneDiv.appendChild(phone);
+        // resultDiv.appendChild(phoneDiv);     
 
         results.appendChild(resultDiv);
       }
@@ -206,6 +206,7 @@ function clearResults() {
               }
               infoWindow.open(map, marker);
               buildIWContent(place);
+              console.log(place);
             });
       }
 

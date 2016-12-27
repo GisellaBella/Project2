@@ -1,40 +1,45 @@
 
 // // var passport = require("passport");
-
+var db = require('../models');
 
 // // // GET /signup
-function getSignup(request, response) {
-	response.render('yo', { message: request.flash('yo') });
-}
+function getSignup(req, res) {
+  db.User.find({},function(err, user){
+          if (err) { 
+            return console.log ("Got a userDB error: " + err);
+          }
+          res.json(user);
+        });
+    }
+
 
 // POST /signup
 function postSignup(req,res,next) {
-// console.log(request.body);
-// db.User.create(request.body, function(err, user) {
-//       if (err) {
-//       console.log('error', err);
-//       }
-//     console.log(user);
-//     response.json(user);
+console.log(req.body);
+db.User.create(req.body, function(err, user) {
+      if (err) {
+      console.log('error', err);
+      }
+    console.log(user);
+    res.json(user);
     
-//   });
+  });
+}
+//   daterange=req.body.daterange;
+//   name=req.body.name;
+//   email=req.body.email;
+//   password= req.body.password;
+//   tel=req.body.tel;
+//   road=req.body.road;
+//   mountain= req.body.mountain;
+//   townie=req.body.townie;
+//   available= req.body.available;
+//   comment=req.body.comment;
+//   storeIds=req.body.storeIds;
 
-
-  daterange=req.body.daterange;
-  name=req.body.name;
-  email=req.body.email;
-  password= req.body.password;
-  tel=req.body.tel;
-  road=req.body.road;
-  mountain= req.body.mountain;
-  townie=req.body.townie;
-  available= req.body.available;
-  comment=req.body.comment;
-  storeIds=req.body.storeIds;
-
-    user.findOne({'username':username,'password':password},function(err,docs){
-        //do something
-    });
+//     user.findOne({'username':username,'password':password},function(err,docs){
+//         //do something
+//     });
 
 
   // var newUser = new db.User(request.body);
@@ -73,7 +78,7 @@ function postSignup(req,res,next) {
 // // Restricted page
 // function secret(request, response){
 //   response.json({secret: "Woooah secret!"});
-}
+
 
 // function search(request, response){
 //  var search = request.body;

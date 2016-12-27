@@ -14,8 +14,9 @@ router.route('/')
   .get(staticsController.home);
 
 router.route('/users')
-  // .get(usersController.getSignup)
+  .get(usersController.getSignup)
   .post(usersController.postSignup);
+  // .post("https://us6.api.mailchimp.com/3.0/");
 
 
 

@@ -96,7 +96,7 @@ function placesRequest(title,latlng,radius,types,icon) {
            title: place.name
            });
         var  rDiv = "<div class= 'rDiv' ><div> <input type='checkbox' name='checkbox' value="
-        + id  + "/>    Contact <hr class='dotted'></div><div> " + name + "</div><div>" + address + " <d/iv><div>" + phone + " </div><div> "+ website + "</div> </div>"
+        + id  + "/>    Contact <hr class='dotted'></div><div><h4> " + name + "</h4></div><div>" + address + " </div> </div>"
         $('#localResults').append(rDiv );
 
         });

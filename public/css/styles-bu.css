@@ -10,6 +10,7 @@ html, body {
   margin:0; 
   height:100%;
 }
+/*Background image for Homepage*/
 .imageOne {
    background-image: url("/images/guybike.png");
    background-repeat: no-repeat;
@@ -47,19 +48,15 @@ html, body {
     padding-top: 12px;
 }
 
-.fButton {
-  vertical-align: top;
-  position: absolute;
-}
 
 /*General Styling----------------------*/
 .center {
 	text-align: center;
 }
-.row {
+/*.row {
  	margin: 30px 0
  	border: 1px black;
-}
+}*/
 .margin-right {
 	margin-right: 10px;
 }
@@ -93,19 +90,18 @@ html, body {
 	display: inline-block;
 	padding: 10px 0px 20px 0px;
 }
-.noradius {
-border-radius:0px !important;
--webkit-border-radius:0px !important;
--moz-border-radius:0px !important;
-}
+
 .btn {
 	 letter-spacing:1px;
 	 padding : 6px 15px;
 	 border-radius: 0px;
 	 margin-bottom: 10px;
-
 	}
-
+.noradius {
+border-radius:0px !important;
+-webkit-border-radius:0px !important;
+-moz-border-radius:0px !important;
+}
 .form-control {
 	border-radius: 0px;
 	}
@@ -185,8 +181,13 @@ border-radius:0px !important;
 
 /* Styling for the result boxes
 -------------------------------------------------- */
+
+.fButton {
+  vertical-align: top;
+  position: absolute;
+}
 .rDiv {
-	padding:15px;
+	padding:10px;
 	display: block;
 	float: left;
 	border-radius: 0px;
@@ -194,7 +195,7 @@ border-radius:0px !important;
 	border-color: red;
 	margin: 10px;
   width: 200px;
-  height: 230px;
+  height: 200px;
   text-align: left;
 }   
 
