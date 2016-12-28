@@ -3,32 +3,33 @@ var router = express.Router();
 // Parses information from POST
 var bodyParser = require('body-parser');
 // Used to manipulate POST methods
-// var methodOverride = require('method-override');
-// var passport = require("passport");
+var methodOverride = require('method-override');
+var passport = require("passport");
 var usersController = require('../controllers/users');
 var staticsController = require('../controllers/statics');
-// var env = require('../env');
 
 
 router.route('/')
-  .get(staticsController.home);
+	.get(staticsController.home);
 
 router.route('/users')
-  .get(usersController.getSignup)
-  .post(usersController.postSignup);
+	.get(usersController.userList)
+	.post(usersController.postSignup);
   // .post("https://us6.api.mailchimp.com/3.0/");
 
+//API Endpoints
+router.route('/api')//API info
+	.get(usersController.apiIndex);
 
+router.route('/api/user')
+	.post(usersController.userCreate);//create a new user
 
-// router.route('/login')
-//   .get(usersController.getLogin)
-//   .post(usersController.postLogin);
+router.route('/api/users')
+	.get(usersController.userList);//User List
 
-// router.route("/logout")
-//   .get(usersController.getLogout);
+router.route('/api/user/:id') // Get, edit, delete a user by id
+	.get(usersController.userShow)
+	.put(usersController.userUpdate)
+	.delete(usersController.userDelete);
 
-
-// router.route('/search')
-//  .post(usersController.search);
-
-module.exports = router;	
+module.exports = router;

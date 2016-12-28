@@ -2,17 +2,16 @@
 var express      = require('express');
 var app          = express();
 var mongoose     = require('mongoose');
-var session      = require('express-session');
-// var passport     = require('passport');
+var passport     = require('passport');
 var flash        = require('connect-flash');
 var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
+var session      = require('express-session');
 var request = require("request");
-// var env = require('env.js');
 
 
-// app = express();
+app = express();
 app.use(morgan('dev')); 
 app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
@@ -31,14 +30,15 @@ app.use(bodyParser());
  * PASSPORT *
  ************/
 
-
-// app.use(passport.initialize());
-// app.use(passport.session()); 
-// app.use(flash()); 
-// require('./config/passport')(passport);
+app.use(session({ secret: 'WDI-GA-EXPRESS' }));
+app.use(passport.initialize());
+app.use(passport.session()); 
+app.use(flash()); 
+require('./config/passport')(passport);
 app.use(function (req, res, next) {
-  res.currentUser = req.user;
-  next();
+  	res.locals.currentUser = req.user;
+	currentSessionUser = res.locals.currentUser;
+	next();
 });
 
 /************
