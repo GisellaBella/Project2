@@ -10,6 +10,7 @@ successRedirect: '/',
 failureRedirect: '/contact_page',
 failureFlash: true
 });
+console.log (req);
 return signupStrategy(req, res);
 }
 
