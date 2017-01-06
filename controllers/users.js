@@ -14,6 +14,12 @@ console.log (req);
 return signupStrategy(req, res);
 }
 
+function getSignup(request, response, next) {
+  response.render('/signup.ejs', { 
+    message: request.flash('signupMessage') });
+  }
+
+
 function userCreate(req, res) { //users
   db.User.create(req.body, function(err, user) {
     if (err) return "user post error: " + err;

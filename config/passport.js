@@ -17,30 +17,38 @@ module.exports = function(passport) {
      usernameField : 'email',
      passwordField : 'password',
      passReqToCallback : true
-  }, function(req, email, password, callback) {
-    // Find a user with this e-mail
-    User.findOne({ 'local.email' :  email }, function(err, user) {
+     }, function(req, email, password, callback) {
+      // Find a user with this e-mail
+      User.findOne({ 'local.email' :  email }, function(err, user) {
       if (err) return callback(err);
 
       // If there already is a user with this email
       if (user) {
-        return callback(null, false, req.flash('signupMessage', 'This email is already used.'));
+        return callback(null, false, req.flash('signupMessage', 'This email is already in use.'));
       } else {
       // There is no user registered with this email
         // Create a new user
         var newUser            = new User();
         newUser.local.email    = email;
         newUser.local.password = newUser.encrypt(password);
-
-        newUser.save(function(err) {
-          if (err) throw err;
-          return callback(null, newUser);
-        });
+        newUser.daterange = daterange;
+       newUser.name = name;
+       newUser.tel  = tel;
+       newUser.storeIds = storeIds;
+      
       }
-    });
-  
-   }));
-   };
+
+      });
+
+      newUser.save(function(err) {
+      if (err) throw err;
+      return callback(null, newUser);
+      });
+    }));
+    
+  };
+   
+   
   // passport.use('local-login', new LocalStrategy({
   //   usernameField : 'email',
   //   passwordField : 'password',

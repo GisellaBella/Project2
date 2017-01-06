@@ -255,7 +255,7 @@ var boxIds = localStorage.getItem('boxIds');
 $( '#storeIds' ).val(boxIds);
 var request=$(this).serialize();
 alert (request);
-$.post('/api/users', request, function(request) {
+$.post('/users', request, function(request) {
 alert ('request after post', request);
 // renderthanks (request);
 });
