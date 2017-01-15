@@ -1,4 +1,5 @@
 // server.js
+var cool = require('cool-ascii-faces');
 var express      = require('express');
 var app          = express();
 var mongoose     = require('mongoose');
@@ -56,8 +57,9 @@ app.use(routes);
 app.use(express.static('public'));
 app.use(express.static(__dirname + '/public')); 
 app.set('views', './views');
-
-
+app.get('/cool', function(request, response) {
+  response.send(cool());
+});
 
 /*
  * HTML Endpoints
