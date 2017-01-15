@@ -52,14 +52,16 @@ var db = require('./models');
  **********/
 // Serve static files from the `/public` directory:
 // i.e. `/images`, `/scripts`, `/styles`
-var routes = require('./config/routes');
-app.use(routes);
-app.use(express.static('public'));
-app.use(express.static(__dirname + '/public')); 
-app.set('views', './views');
 app.get('/cool', function(request, response) {
   response.send(cool());
 });
+app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
+var routes = require('./config/routes');
+app.use(routes);
+
+ 
+app.set('views', './views');
 
 /*
  * HTML Endpoints
@@ -90,6 +92,6 @@ app.get('/thanks', function thanks(request, response) {
  * SERVER *
  **********/
 // listen on port 3000
-app.listen(process.env.PORT || 3000, function () {
-  console.log('Express server is up and running on http://localhost:3000/');
+app.listen(process.env.PORT || 5000, function () {
+  console.log('Express server is up and running on http://localhost:5000/');
 });
