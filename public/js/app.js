@@ -1,4 +1,4 @@
-console.log ("app.js loaded");
+// console.log ("app.js loaded");
 
 function initGeolocation() {
   if( navigator.geolocation ) {
@@ -40,7 +40,7 @@ function fail() {
 // Could not obtain location
 }    
 function collectIds( form ) {
-  console.log ("collectIds function");
+  // console.log ("collectIds function");
   var boxes =  document.getElementById('checkContainer');
   var boxIds= [];// array that will store the value of selected checkboxes
    if (boxes.childNodes.length > 1) {
@@ -52,7 +52,7 @@ function collectIds( form ) {
       boxIds.push(boxes[i].value); 
     }
         localStorage.setItem('boxIds', JSON.stringify(boxIds));
-        alert(boxIds);
+        // alert(boxIds);
         window.location.replace("/contact_page");
     return boxIds;
   } else {
