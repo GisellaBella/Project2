@@ -20,7 +20,7 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "bson": "~1.0.1",
-     "mongodb": "~2.0"
+    "mongodb": "v3.2.10"
   },
 
   "devDependencies": {},
