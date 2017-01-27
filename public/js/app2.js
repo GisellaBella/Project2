@@ -263,7 +263,7 @@ $("#contact_form").submit(function(event) {
 
     $('#storeIds').val(boxIds);
     var request = $(this).serialize();
-    // alert(request);
+    alert(request);
     $.post('/users', request, function(request) {
         // alert('request after post', request);
         // renderthanks (request);

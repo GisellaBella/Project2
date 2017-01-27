@@ -1,8 +1,13 @@
 
 var passport = require("passport");
-var db = require('../models');
 
-    
+ 
+//get Signup
+function getSignup(request, response, next) {
+  response.render('/signup.ejs', { 
+    message: request.flash('signupMessage') });
+  }
+
 // POST /New User
 function postSignup(req,res,next) { // /users
 var signupStrategy = passport.authenticate('local-signup', {
@@ -11,14 +16,33 @@ failureRedirect: '/contact_page',
 failureFlash: true
 });
 console.log (req);
-return signupStrategy(req, res);
+return signupStrategy(req, res, next);
 }
 
-function getSignup(request, response, next) {
-  response.render('/signup.ejs', { 
-    message: request.flash('signupMessage') });
-  }
+// GET /login
+function getLogin(request, response, next) { 
+  response.render('login.ejs', { message: request.flash('loginMessage') });
+}
 
+// POST /login 
+function postLogin(request, response, next) {
+    var loginProperty = passport.authenticate('local-login', {
+      successRedirect : '/',
+      failureRedirect : '/login',
+      failureFlash : true
+    });
+    return loginProperty(request, response, next);  
+}
+
+// GET /logout
+function getLogout(request, response, next) {  
+  request.logout();
+  response.redirect('/');
+}
+// Restricted page
+function secret(request, response, next){
+  response.json({secret: "Woooah secret!"});
+}
 
 function userCreate(req, res) { //users
   db.User.create(req.body, function(err, user) {
@@ -34,7 +58,7 @@ function userList(req, res) { // /users
     res.json(userList);
 }
     
-//API Endpoints
+// API Endpoints
 function apiIndex(req, res) {// '/api'//everything
   res.json({
     message: "BikeFinder API Endpoints",
@@ -80,7 +104,13 @@ function userDelete(req, res) {//'/api/user/:id'
 }
 
 module.exports = {
+
+  getLogin: getLogin,
+  postLogin: postLogin ,
+  getSignup: getSignup,
   postSignup: postSignup,
+  getLogout: getLogout,
+  secret: secret,
   userCreate: userCreate,
   userList: userList,
   apiIndex: apiIndex,

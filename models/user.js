@@ -1,15 +1,14 @@
 
 // user.js
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
 var bcrypt   = require('bcrypt-nodejs');
 
-var UserSchema = new Schema ({
+var User = mongoose.Schema ({
 local: {
 email: String,
-password : String
+password : String,
 },
-  daterange: String,
+daterange: [String],
   name: String,
   tel: String,
   road: String,
@@ -17,19 +16,19 @@ password : String
   townie: String,
   available: String,
   comment: String,
-  storeIds: Array,
-
+  storeIds: Array
 });
 
-UserSchema.methods.encrypt = function(password) {
+
+User.methods.encrypt = function(password) {
 	return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
-UserSchema.methods.validPassword = function(password) {
+User.methods.validPassword = function(password) {
 	return bcrypt.compareSync(password, this.local.password);
 };
 
 
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', User);
 
